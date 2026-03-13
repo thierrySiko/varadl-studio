@@ -1,0 +1,40 @@
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+h1,
+h2 {
+  color: #0f172a;
+}
+
+button {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+button:hover {
+  background: #eef2ff;
+}
+
+textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+pre {
+  font-family: Consolas, "Courier New", monospace;
+}
