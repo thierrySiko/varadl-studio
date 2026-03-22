@@ -334,7 +334,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 20, maxWidth: 1200, margin: "0 auto" }}>
-      <h1>VarADL Studio — V3 interactif</h1>
+      <h1>VarADL Studio</h1>
 
       <p>
         Prototype d&apos;ADL intégrant la variabilité des SPL avec composants,

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useMemo, useCallback, useRef } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -11,6 +11,7 @@ import ReactFlow, {
 } from "reactflow";
 import type { Edge, Node, Connection } from "reactflow";
 import "reactflow/dist/style.css";
+import { toPng, toSvg } from "html-to-image";
 
 import { getLayoutedElements } from "./graph-layout";
 
@@ -65,10 +66,19 @@ function nodeStyleByOrigin(origin?: string) {
   }
 }
 
+function downloadDataUrl(dataUrl: string, filename: string) {
+  const a = document.createElement("a");
+  a.href = dataUrl;
+  a.download = filename;
+  a.click();
+}
+
 export default function GraphViewReactFlow({
   productElements,
   architecture,
 }: Props) {
+  const exportRef = useRef<HTMLDivElement | null>(null);
+
   const layout = useMemo(() => {
     const components = productElements.filter(isComponent);
     const connectors = productElements.filter(isConnector);
@@ -214,6 +224,29 @@ export default function GraphViewReactFlow({
     setEdges(layouted.edges);
   }
 
+  async function exportPng() {
+    if (!exportRef.current) return;
+
+    const dataUrl = await toPng(exportRef.current, {
+      cacheBust: true,
+      pixelRatio: 2,
+      backgroundColor: "#f8fafc",
+    });
+
+    downloadDataUrl(dataUrl, "varadl-architecture.png");
+  }
+
+  async function exportSvg() {
+    if (!exportRef.current) return;
+
+    const dataUrl = await toSvg(exportRef.current, {
+      cacheBust: true,
+      backgroundColor: "#f8fafc",
+    });
+
+    downloadDataUrl(dataUrl, "varadl-architecture.svg");
+  }
+
   return (
     <div style={{ marginTop: 20 }}>
       <div style={{ marginBottom: 10, display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -224,6 +257,20 @@ export default function GraphViewReactFlow({
           Reset layout
         </button>
 
+        <button
+          onClick={exportPng}
+          style={{ padding: "6px 10px", cursor: "pointer" }}
+        >
+          Export PNG
+        </button>
+
+        <button
+          onClick={exportSvg}
+          style={{ padding: "6px 10px", cursor: "pointer" }}
+        >
+          Export SVG
+        </button>
+
         <span><strong>Core</strong> : gris</span>
         <span style={{ color: "#f97316" }}><strong>Optional</strong> : orange</span>
         <span style={{ color: "#2563eb" }}><strong>Variant</strong> : bleu</span>
@@ -231,6 +278,7 @@ export default function GraphViewReactFlow({
       </div>
 
       <div
+        ref={exportRef}
         style={{
           height: 560,
           border: "1px solid #ddd",
