@@ -21,7 +21,7 @@ export default function FeatureModelPanel({
       }}
     >
 
-      <h2>Feature Model automatique</h2>
+      <h2>Feature Model</h2>
 
       <div
         style={{

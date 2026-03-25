@@ -223,6 +223,8 @@ export default function FeatureModelGraph({
           flexWrap: "wrap",
         }}
       >
+        <h2>Feature Model Graphe</h2>
+        
         <button onClick={exportPng}>Export PNG</button>
         <button onClick={exportSvg}>Export SVG</button>
 
