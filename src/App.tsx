@@ -438,6 +438,13 @@ export default function App() {
 
       {architecture && <ConfigurationSpacePanel architecture={architecture} />}
 
+      {displayedProduct && (
+        <GraphViewReactFlow
+          productElements={displayedProduct.elements}
+          architecture={architecture}
+        />
+      )}
+
       {architecture && (
         <GeneratedProductsPanel
           architecture={architecture}
@@ -445,12 +452,6 @@ export default function App() {
         />
       )}
 
-      {displayedProduct && (
-        <GraphViewReactFlow
-          productElements={displayedProduct.elements}
-          architecture={architecture}
-        />
-      )}
     </div>
   );
 }
