@@ -376,21 +376,6 @@ export default function App() {
             onToggleMany={onToggleMany}
           />
 
-          <FeatureModelPanel
-            architecture={architecture}
-            selection={selection}
-          />
-
-          <FeatureModelGraph
-            architecture={architecture}
-            selection={selection}
-          />
-
-          <SPLGraphView
-            architecture={architecture}
-            selection={selection}
-          />
-
           {optionalComponents.length > 0 && (
             <div style={{ marginBottom: 20 }}>
               <h2>Options</h2>
@@ -407,6 +392,23 @@ export default function App() {
               ))}
             </div>
           )}
+
+          <FeatureModelPanel
+            architecture={architecture}
+            selection={selection}
+          />
+
+          <FeatureModelGraph
+            architecture={architecture}
+            selection={selection}
+          />
+
+          <SPLGraphView
+            architecture={architecture}
+            selection={selection}
+          />
+
+          
         </>
       )}
 
