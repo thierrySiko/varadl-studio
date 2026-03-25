@@ -257,9 +257,8 @@ export default function SPLGraphView({ architecture, selection }: Props) {
 
   return (
     <div style={{ marginBottom: 20 }}>
+      <h2>Graphe SPL</h2>
       <div style={{ marginBottom: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
-        
-        <h2>SPL Graphe</h2>
 
         <button
           onClick={exportPng}

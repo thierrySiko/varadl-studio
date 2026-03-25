@@ -215,6 +215,7 @@ export default function FeatureModelGraph({
 
   return (
     <div style={{ marginBottom: 20 }}>
+      <h2>Graphe Feature Model</h2>
       <div
         style={{
           marginBottom: 10,
@@ -223,8 +224,7 @@ export default function FeatureModelGraph({
           flexWrap: "wrap",
         }}
       >
-        <h2>Feature Model Graphe</h2>
-        
+
         <button onClick={exportPng}>Export PNG</button>
         <button onClick={exportSvg}>Export SVG</button>
 
