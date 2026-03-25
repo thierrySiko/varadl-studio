@@ -158,7 +158,10 @@ export default function App() {
 
   const [loadedProduct, setLoadedProduct] = useState<ProductArchitecture | null>(null);
 
+  const [showGeneratedProducts, setShowGeneratedProducts] = useState(false);
+  
   function deriveFromText(): void {
+    setShowGeneratedProducts(false);
     setLoadedProduct(null);
 
     const parsedArchitecture = parseArchitecture(architectureText);
@@ -449,10 +452,25 @@ export default function App() {
       {architecture && <ConfigurationSpacePanel architecture={architecture} />}
 
       {architecture && (
-        <GeneratedProductsPanel
-          architecture={architecture}
-          onLoadProduct={loadGeneratedProduct}
-        />
+        <div style={{ marginBottom: 20 }}>
+          <button
+            onClick={() => setShowGeneratedProducts((prev) => !prev)}
+            style={{ padding: "10px 16px", cursor: "pointer" }}
+          >
+            {showGeneratedProducts
+              ? "Masquer les architectures générées"
+              : "Afficher les architectures générées"}
+          </button>
+
+          {showGeneratedProducts && (
+            <div style={{ marginTop: 12 }}>
+              <GeneratedProductsPanel
+                architecture={architecture}
+                onLoadProduct={loadGeneratedProduct}
+              />
+            </div>
+          )}
+        </div>
       )}
 
     </div>
